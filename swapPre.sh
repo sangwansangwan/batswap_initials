@@ -21,7 +21,7 @@ fi
 cron_schedule="@reboot"
 existing_cron=$(crontab -l 2>/dev/null | grep -F "$cron_command")
 if [ -z "$existing_cron" ]; then
-    (crontab -l 2>/dev/null; echo "$cron_schedule $cron_command") | crontab -
+    (crontab -l 2>/dev/null; echo "$cron_schedule sleep 10 && $cron_command") | crontab -
     echo "Cron job added successfully."
 else
     echo "The cron job already exists."
